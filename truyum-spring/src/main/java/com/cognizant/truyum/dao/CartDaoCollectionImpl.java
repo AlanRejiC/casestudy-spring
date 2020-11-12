@@ -5,28 +5,39 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+
 import com.cognizant.truyum.model.Cart;
 import com.cognizant.truyum.model.MenuItem;
 
-
+@Component
+@ImportResource("classpath:spring-config.xml")
 public class CartDaoCollectionImpl implements CartDao {
-	private static HashMap<Long,Cart> userCarts;
+	@Autowired
+	private HashMap<Long,Cart> userCarts;
 
-	public CartDaoCollectionImpl() {
-		super();
-		// TODO Auto-generated constructor stub
-		if(userCarts==null)
-		{
-			HashMap<Long,Cart> hmap=new HashMap<Long,Cart>();
-			//hmap.put(1,new new MenuItem(104566,"Biriyani","main dish",130,false,true,DataUtil.convertToDate("17/10/2021")));
-			userCarts=hmap;
-		}
+
+	public HashMap<Long, Cart> getUserCarts() {
+		return userCarts;
+	}
+
+	public void setUserCarts(HashMap<Long, Cart> userCarts) {
+		this.userCarts = userCarts;
 	}
 
 	@Override
 	public void addCartItem(long userId, long MenuItemId) {
 		// TODO Auto-generated method stub
-		MenuItemDao menuItemDao = new MenuItemDaoCollectionImpl();
+		//System.out.println(userCarts);
+		ApplicationContext context = new AnnotationConfigApplicationContext();
+		((AnnotationConfigApplicationContext) context).scan("com.cognizant.truyum");
+		((AnnotationConfigApplicationContext) context).refresh();
+		MenuItemDao menuItemDao = (MenuItemDao) context.getBean(MenuItemDaoCollectionImpl.class);
 		MenuItem mi =menuItemDao.getMenuItem(MenuItemId);
 		boolean check=false;
 		for(Map.Entry<Long,Cart> mm:userCarts.entrySet())
@@ -60,7 +71,7 @@ public class CartDaoCollectionImpl implements CartDao {
 				mi=mm.getValue().getMenuItemList();
 			}
 		}
-		if(mi.size()==0)
+		if(mi.size()==0 || mi==null)
 		{
 			throw new CartEmptyException();
 		}

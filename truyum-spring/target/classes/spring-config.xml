@@ -7,10 +7,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
+	<context:annotation-config />
 	<bean id="sdf" class="java.text.SimpleDateFormat">
 		<constructor-arg value="dd/MM/yyyy" />
 	</bean>
-
 	<bean id="sandwich" class="com.cognizant.truyum.model.MenuItem">
 		<property name="id" value="10001" />
 		<property name="name" value="Sandwich" />
@@ -24,7 +24,7 @@
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="burger" class="com.cognizant.truyum.model.MenuItem">
 		<property name="id" value="10002" />
 		<property name="name" value="Burger" />
@@ -35,11 +35,11 @@
 		<property name="dateOfLaunch">
 			<bean factory-bean="sdf" factory-method="parse">
 				<constructor-arg value="10/11/2017" />
-				</bean>
-				</property>
 			</bean>
-			
-			<bean id="pizza" class="com.cognizant.truyum.model.MenuItem">
+		</property>
+	</bean>
+
+	<bean id="pizza" class="com.cognizant.truyum.model.MenuItem">
 		<property name="id" value="10003" />
 		<property name="name" value="Pizza" />
 		<property name="price" value="300" />
@@ -50,24 +50,24 @@
 			<bean factory-bean="sdf" factory-method="parse">
 				<constructor-arg value="24/01/2018" />
 			</bean>
-			</property>
-			</bean>
-			
-			<bean id="fries" class="com.cognizant.truyum.model.MenuItem">
+		</property>
+	</bean>
+
+	<bean id="fries" class="com.cognizant.truyum.model.MenuItem">
 		<property name="id" value="10004" />
 		<property name="name" value="Fries" />
 		<property name="price" value="90" />
-		<property name="active" value="true" />
+		<property name="active" value="false" />
 		<property name="freeDelivery" value="false" />
 		<property name="category" value="Snacks" />
 		<property name="dateOfLaunch">
 			<bean factory-bean="sdf" factory-method="parse">
 				<constructor-arg value="12/10/2010" />
 			</bean>
-			</property>
-			</bean>
-			
-			<bean id="brownie" class="com.cognizant.truyum.model.MenuItem">
+		</property>
+	</bean>
+
+	<bean id="brownie" class="com.cognizant.truyum.model.MenuItem">
 		<property name="id" value="10005" />
 		<property name="name" value="Brownie" />
 		<property name="price" value="50" />
@@ -80,16 +80,27 @@
 			</bean>
 		</property>
 	</bean>
-	
-		<bean id="menuItems" class="com.cognizant.truyum.dao.MenuItemDaoCollectionImpl">
+
+	<bean id="menuItemList"
+		class="java.util.ArrayList">
 		<constructor-arg>
-		<list>
-		<ref bean="sandwich"/>
-		<ref bean="burger"/>
-		<ref bean="pizza"/>
-		<ref bean="fries"/>
-		<ref bean="brownie"/>
-		</list>
+			<list>
+				<ref bean="sandwich" />
+				<ref bean="burger" />
+				<ref bean="pizza" />
+				<ref bean="fries" />
+				<ref bean="brownie" />
+			</list>
 		</constructor-arg>
-		</bean>	
+	</bean>
+	
+
+	<bean id="menuItemService"
+		class="com.cognizant.truyum.service.MenuItemService"></bean>
+
+
+	<bean id="cartMap" class="java.util.HashMap">
+	</bean>
 </beans>
+
+

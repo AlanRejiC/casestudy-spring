@@ -3,19 +3,34 @@ package com.cognizant.truyum.dao;
 
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.stereotype.Component;
+
 import com.cognizant.truyum.model.MenuItem;
 import com.cognizant.truyum.util.DateUtil;
 
+
+
+@Component
+@ImportResource("classpath:spring-config.xml")
 public class MenuItemDaoCollectionImpl implements MenuItemDao {
-	
+
+	@Autowired
+	private List<MenuItem> menuItemList;
 	public MenuItemDaoCollectionImpl(List<MenuItem> menuItemList) {
 		super();
 		this.menuItemList = menuItemList;
 	}
 
-	private List<MenuItem> menuItemList;
-	
-	
+	public List<MenuItem> getMenuItemList() {
+		return menuItemList;
+	}
+
+	public void setMenuItemList(List<MenuItem> menuItemList) {
+		this.menuItemList = menuItemList;
+	}
 
 	public MenuItemDaoCollectionImpl() {
 		super();
