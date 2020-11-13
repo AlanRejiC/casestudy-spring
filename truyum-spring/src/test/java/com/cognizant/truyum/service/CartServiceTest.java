@@ -26,9 +26,9 @@ public class CartServiceTest {
 	@Before
 	public void intializeService() {
 		ApplicationContext context = new AnnotationConfigApplicationContext();
-		((AnnotationConfigApplicationContext) context).scan("com.cognizant.truyum");
+		((AnnotationConfigApplicationContext) context).scan("com.cognizant.truyum"); // without casting it shows error
 		((AnnotationConfigApplicationContext) context).refresh();
-		cartService = (CartService) context.getBean("cartService");
+		cartService = (CartService) context.getBean(CartService.class);
 		formatter = (SimpleDateFormat) context.getBean("sdf");
 	}
 

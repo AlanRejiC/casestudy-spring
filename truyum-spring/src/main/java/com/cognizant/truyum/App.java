@@ -16,17 +16,6 @@ import com.cognizant.truyum.service.MenuItemService;
  *
  */
 public class App {
-	public static void main(String[] args) {
-		/*ApplicationContext xml = new ClassPathXmlApplicationContext("spring-config.xml");
-		MenuItemDao testDemo = (MenuItemDao) xml.getBean("menuItemImpl");
-		List<MenuItem> menuItemList = testDemo.getMenuItemListAdmin();
-		for (MenuItem menuItem : menuItemList)
-			System.out.println(menuItem);
-		MenuItemService mm=(MenuItemService) xml.getBean("menuItemService");
-		menuItemList = mm.getMenuListAdmin();
-		for (MenuItem menuItem : menuItemList)
-			System.out.println(menuItem);*/
-		CartService cs=new CartService();
-		cs.getCartDao().addCartItem(1, 10001);
+	
 	}
-}
+

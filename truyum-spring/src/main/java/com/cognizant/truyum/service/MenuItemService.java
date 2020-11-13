@@ -25,11 +25,6 @@ public class MenuItemService {
 		this.menuItemDao = menuItemDao;
 	}
 
-	public void setMenuItemDao()
-	{
-		ApplicationContext xml = new ClassPathXmlApplicationContext("spring-config.xml");
-		menuItemDao=(MenuItemDao) xml.getBean("menuItemImpl");
-	}
 	
 	public List<MenuItem> getMenuListAdmin()
 	{

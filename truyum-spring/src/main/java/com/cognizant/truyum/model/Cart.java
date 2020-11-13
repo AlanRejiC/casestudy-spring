@@ -7,6 +7,10 @@ public class Cart {
 	double total;
 	
 	
+	public Cart() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public List<MenuItem> getMenuItemList() {
 		return menuItemList;
 	}
@@ -27,6 +31,9 @@ public class Cart {
 		super();
 		this.menuItemList = menuItemList;
 		this.total = total;
+	}
+	public Cart(List<MenuItem> newUserMenuList) {
+		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public int hashCode() {

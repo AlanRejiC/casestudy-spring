@@ -98,9 +98,11 @@
 	<bean id="menuItemService"
 		class="com.cognizant.truyum.service.MenuItemService"></bean>
 
-
-	<bean id="cartMap" class="java.util.HashMap">
-	</bean>
+    <bean id="cartDao"
+        class="com.cognizant.truyum.dao.CartDaoCollectionImpl">
+        <property name="userCarts">
+            <map>
+            </map>
+        </property>
+    </bean>
 </beans>
-
-
